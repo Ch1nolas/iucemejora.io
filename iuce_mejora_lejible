@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IUCE MEJORA</title>
+  <style>
+    :root {
+      --orange: #f37021;
+      --orange-dark: #d95e15;
+      --orange-soft: #fff3eb;
+      --white: #ffffff;
+      --text: #333333;
+      --border: #ffd2b5;
+      --success: #eaf8ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--orange-soft), #ffffff);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: var(--white);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 800px;
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 22px rgba(243,112,33,0.08);
+    }
+
+    .card h2, .card h3 {
+      margin-top: 0;
+      color: var(--orange-dark);
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--orange-soft);
+      color: var(--orange-dark);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin: 4px 6px 0 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 12px 0 6px;
+      color: #76310d;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 1rem;
+      color: #202020;
+      font-weight: 500;
+      opacity: 1;
+    }
+
+    input::placeholder, textarea::placeholder { color: #686868; opacity: 1; }
+    select option { color: #202020; background: #fff; }
+    input:focus, select:focus, textarea:focus { outline: 3px solid #ffba8c; border-color: var(--orange-dark); }
+
+    textarea { min-height: 90px; resize: vertical; }
+
+    .checklist label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      margin: 8px 0;
+    }
+
+    .checklist input[type="checkbox"] {
+      width: auto;
+      transform: scale(1.1);
+    }
+
+    button {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 14px;
+      transition: 0.2s ease;
+    }
+
+    button:hover { background: var(--orange-dark); }
+
+    .secondary {
+      background: #fff;
+      color: var(--orange-dark);
+      border: 1px solid var(--border);
+    }
+
+    .list-item {
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--orange);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: #fffdfa;
+    }
+
+    .list-item h4 {
+      margin: 0 0 6px;
+      color: var(--orange-dark);
+    }
+
+    .notice {
+      background: var(--success);
+      border: 1px solid #c7ead1;
+      color: #285a34;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 14px;
+      display: none;
+    }
+
+    .preview {
+      background: #fff8f2;
+      border: 1px dashed var(--orange);
+      border-radius: 14px;
+      padding: 16px;
+      white-space: pre-line;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero, .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>IUCE MEJORA</h1>
+    <p>Agenda académica automática para estudiantes del IUCE. Los alumnos seleccionan sus materias y reciben recordatorios cuando los profesores cargan nuevas actividades, exámenes o entregas.</p>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <div class="card">
+        <h2>¿Cómo funciona?</h2>
+        <p><strong>IUCE MEJORA</strong> propone una solución simple para mejorar la organización académica:</p>
+        <div class="pill">1. El estudiante elige sus materias</div>
+        <div class="pill">2. El profesor carga actividades</div>
+        <div class="pill">3. El sistema envía recordatorios</div>
+        <div class="pill">4. El estudiante recibe un WhatsApp</div>
+        <p style="margin-top:16px;">Esta demo muestra el flujo completo en una sola página para presentar la idea del proyecto.</p>
+      </div>
+      <div class="card">
+        <h2>Ejemplo de aviso</h2>
+        <div class="preview" id="messagePreview">🎓 IUCE MEJORA
+
+Hola, estudiante.
+
+🔔 Recordatorio académico
+Hoy tenés un examen de Taller de Creatividad.
+📅 Fecha: 18/11/2026
+🕒 Hora: 18:00 hs
+
+¡Muchos éxitos! 📚</div>
+        <button onclick="sendWhatsApp()">Probar mensaje por WhatsApp</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Perfil estudiante</h3>
+        <label>Nombre del estudiante</label>
+        <input type="text" id="studentName" placeholder="Ej: Nicolás Martínez" />
+
+        <label>Número de WhatsApp</label>
+        <input type="text" id="studentPhone" placeholder="Ej: 5492615881860" />
+
+        <label>Materias seleccionadas</label>
+        <div class="checklist">
+          <label><input type="checkbox" value="Taller de Creatividad" checked /> Taller de Creatividad</label>
+          <label><input type="checkbox" value="Administración" /> Administración</label>
+          <label><input type="checkbox" value="Marketing Digital" /> Marketing Digital</label>
+          <label><input type="checkbox" value="Estadística" /> Estadística</label>
+          <label><input type="checkbox" value="Economía" /> Economía</label>
+        </div>
+
+        <button onclick="saveStudent()">Guardar selección</button>
+        <div class="notice" id="studentNotice">Selección guardada correctamente.</div>
+      </div>
+
+      <div class="card">
+        <h3>Perfil profesor</h3>
+        <label>Materia</label>
+        <select id="subject">
+          <option>Taller de Creatividad</option>
+          <option>Administración</option>
+          <option>Marketing Digital</option>
+          <option>Estadística</option>
+          <option>Economía</option>
+        </select>
+
+        <label>Tipo de actividad</label>
+        <select id="activityType">
+          <option>Examen</option>
+          <option>Trabajo práctico</option>
+          <option>Entrega</option>
+          <option>Clase especial</option>
+        </select>
+
+        <label>Fecha</label>
+        <input type="date" id="date" />
+
+        <label>Hora</label>
+        <input type="time" id="time" />
+
+        <label>Detalle</label>
+        <textarea id="detail" placeholder="Ej: Estudiar unidad 2, 3 y 4"></textarea>
+
+        <button onclick="publishActivity()">Publicar actividad</button>
+        <div class="notice" id="teacherNotice">Actividad publicada correctamente.</div>
+      </div>
+    </section>
+
+    <section class="grid" style="margin-top:18px;">
+      <div class="card">
+        <h3>Actividades cargadas</h3>
+        <div id="activitiesList">
+          <div class="list-item">
+            <h4>Taller de Creatividad — Examen</h4>
+            <p><strong>Fecha:</strong> 18/11/2026 — <strong>Hora:</strong> 18:00 hs</p>
+            <p><strong>Detalle:</strong> Evaluación de creatividad aplicada.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Idea del sistema automático</h3>
+        <p>Cuando un docente carga una actividad:</p>
+        <ul>
+          <li>Se guarda en la base de datos.</li>
+          <li>El sistema identifica a los estudiantes inscriptos en esa materia.</li>
+          <li>Se programa el recordatorio para el mismo día o con anticipación.</li>
+          <li>Se envía un aviso por WhatsApp al número registrado.</li>
+        </ul>
+        <p><strong>Importante:</strong> esta demo muestra la idea visual. Para que funcione de verdad se debe integrar con backend, base de datos y WhatsApp Business API.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    IUCE MEJORA · Prototipo académico con identidad visual en naranja y blanco.
+  </footer>
+
+  <script>
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const [y, m, d] = dateStr.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function saveStudent() {
+      const notice = document.getElementById('studentNotice');
+      notice.style.display = 'block';
+      setTimeout(() => notice.style.display = 'none', 2500);
+    }
+
+    function publishActivity() {
+      const subject = document.getElementById('subject').value;
+      const type = document.getElementById('activityType').value;
+      const date = formatDate(document.getElementById('date').value);
+      const time = document.getElementById('time').value || '--:--';
+      const detail = document.getElementById('detail').value || 'Sin detalle adicional.';
+
+      const item = document.createElement('div');
+      item.className = 'list-item';
+      item.innerHTML = `
+        <h4>${subject} — ${type}</h4>
+        <p><strong>Fecha:</strong> ${date || 'Sin fecha'} — <strong>Hora:</strong> ${time} hs</p>
+        <p><strong>Detalle:</strong> ${detail}</p>
+      `;
+
+      document.getElementById('activitiesList').prepend(item);
+
+      const message = `🎓 IUCE MEJORA\n\nHola, estudiante.\n\n🔔 Recordatorio académico\nHoy tenés un ${type.toLowerCase()} de ${subject}.\n📅 Fecha: ${date || 'Sin fecha'}\n🕒 Hora: ${time} hs\n📝 ${detail}\n\n¡Muchos éxitos! 📚`;
+      document.getElementById('messagePreview').innerText = message;
+
+      const notice = document.getElementById('teacherNotice');
+      notice.style.display = 'block';
+      setTimeout(() => notice.style.display = 'none', 2500);
+    }
+
+    function sendWhatsApp() {
+      const phone = document.getElementById('studentPhone').value.trim() || '5492615881860';
+      const text = document.getElementById('messagePreview').innerText;
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
